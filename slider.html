@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slider</title>
+    <style>
+        .main {
+            border: 3px solid #000;
+            width: 760px;
+
+        }
+
+
+
+        button {
+            margin: 32px;
+        }
+
+        #slide {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <div id="slide">
+
+            <img src="1.jpg" alt="" id="p1">
+            <img src="2.jpg" alt="" id="p2">
+            <img src="3.jpg" alt="" id="p3">
+
+
+
+        </div>
+
+        <button onclick="back()">BACK</button>
+        <button onclick="f()">Forward</button>
+    </div>
+
+
+    <script>
+
+        // //Устанавливаем стартовый индекс слайда по умолчанию:
+        var slideIndex = 1;
+        console.log(slideIndex);;
+        showSlides(slideIndex);
+
+        // //Увеличиваем индекс на 1 — показываем следующий слайд:
+        function f() {
+            showSlides(slideIndex = slideIndex + 1);
+        }
+
+        // //Уменьшаем индекс на 1 — показываем предыдущий слайд:
+        function back() {
+            showSlides(slideIndex -= 1);
+        }
+
+        // // Устанавливаем текущий слайд: 
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var slides = document.querySelectorAll("img");
+
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+
+            if (n < slideIndex) {
+                slideIndex = slides.length;
+            }
+
+            for (var slide of slides) {
+                slide.style.display = "none";
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+
+
+        }
+
+//Возникла небольшая трудность. Если на первом слайде нажать кнопку "Back" в консоле выдается ошибка
+// так понимаю SlidesIndex становится равным нулю и из-за этого ошибка
+
+
+    </script>
+
+</body>
+
+</html>
